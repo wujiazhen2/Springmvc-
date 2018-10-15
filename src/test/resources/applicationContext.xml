@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="com.qworldr">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <bean id="aspect" class="com.qworldr.aspectj.XMLAspectj"></bean>
+    <!--<aop:config>-->
+        <!--<aop:aspect id="aspect" ref="aspect">-->
+            <!--<aop:pointcut id="pointcut" expression="execution(* com.qworldr.aspectj.service.TestService.*())"/>-->
+            <!--<aop:before method="before" pointcut-ref="pointcut"></aop:before>-->
+            <!--&lt;!&ndash; 后置通知，通知方法可以有两个参数-->
+             <!--JoinPoint   point    可以获得目标方法和参数值-->
+             <!--Object      val    这里的名字要和returning=”val”中保持一致，指的是方法的返回值。-->
+             <!--&ndash;&gt;-->
+            <!--<aop:after-returning method="afterReturn" pointcut-ref="pointcut" returning="val"></aop:after-returning>-->
+            <!--&lt;!&ndash; 异常通知，通知方法可以有两个参数-->
+            <!--JoinPoint   point    可以获得目标方法和参数值-->
+            <!--Throwable   ex    这里的名字要和throwing="ex" 中保持一致，指的是方法的抛出的异常。-->
+            <!--&ndash;&gt;-->
+            <!--<aop:after-throwing method="afterThrowing" pointcut-ref="pointcut" throwing="ex"></aop:after-throwing>-->
+            <!--<aop:after method="after" pointcut-ref="pointcut" ></aop:after>-->
+            <!--&lt;!&ndash; 环绕通知，通知方法可以有1个参数-->
+            <!--ProceedingJoinPoin   point    可以控制连接点的执行，ProceedingJoinPoint的proceed方法相当于invoke方法，调用目标类的目标方法-->
+            <!--&ndash;&gt;-->
+            <!--<aop:around method="around" pointcut-ref="pointcut" ></aop:around>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+    <aop:aspectj-autoproxy/>
+</beans>
